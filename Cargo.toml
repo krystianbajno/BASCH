@@ -5,11 +5,12 @@ edition = "2021"
 build = "build.rs"
 
 [dependencies]
-rand = "0.8"
+rand = "0.9"
 lazy_static = "1.4"
-nix = { version = "0.29.0", features = ["signal", "process"] }
+nix = { version = "0.29.0", features = ["signal", "process", "term", "fs"] }
 signal-hook = "0.3"
-portable-pty = "0.9" 
+portable-pty = "0.9"
+glob = "0.3.2"
 
 winapi = { version = "0.3", features = ["winbase", "processthreadsapi", "handleapi", "memoryapi", "synchapi", "minwinbase", "minwindef", "winnt"] }
 
@@ -17,16 +18,28 @@ winapi = { version = "0.3", features = ["winbase", "processthreadsapi", "handlea
 static_vcruntime = "2.0"
 
 [[bin]]
+name = "net_mini_listener"
+path = "src/net_mini/net_mini_listener.rs"
+
+[[bin]]
+name = "net_mini_client"
+path = "src/net_mini/net_mini_client.rs"
+
+[[bin]]
+name = "net_mini_shell"
+path = "src/net_mini/net_mini_shell.rs"
+
+[[bin]]
 name = "net_shell"
-path = "src/net_shell.rs"
+path = "src/net/net_shell.rs"
 
 [[bin]]
 name = "net_listener"
-path = "src/net_listener.rs"
+path = "src/net/net_listener.rs"
 
 [[bin]]
 name = "net_client"
-path = "src/net_client.rs"
+path = "src/net/net_client.rs"
 
 [[bin]]
 name = "tcp_proxy"
@@ -35,3 +48,7 @@ path = "src/tcp_proxy.rs"
 [[bin]]
 name = "udp_proxy"
 path = "src/udp_proxy.rs"
+
+[lib]
+crate_name = "net_utils"
+path = "src/net_utils.rs"
